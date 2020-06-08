@@ -132,4 +132,14 @@ void test_writetoDatabase()
 	when(db.writeScore("lazza",10.0)).thenReturn(true);
 	assertTrue(han.saveWord("lazza",10.0));
 }
+
+@Test
+void test_readFromDatabase()
+{
+	HangmanDBService db=mock(HangmanDBService.class);
+	WordAndScore ws=mock(WordAndScore.class);
+	Hangman han=new Hangman(db);
+	when(db.readWordAndScore("lazza")).thenReturn(new WordAndScore("lazza", 10.0));
+	assertEquals(han.readHangmanStatus("lazza").score, 10.0, "Same");
+}
 }

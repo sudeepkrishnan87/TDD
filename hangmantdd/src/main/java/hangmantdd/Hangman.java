@@ -120,4 +120,9 @@ public Boolean saveWord(String word, double score) {
 	return db.writeScore(word, score);
 	
 }
+
+public WordAndScore readHangmanStatus(String word) {
+	// TODO Auto-generated method stub
+	return db.readWordAndScore(word);
+}
 }
