@@ -8,12 +8,23 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.BooleanSupplier;
 
 public class Hangman {
 Set<String>uniquewordSet=new HashSet();
 private  static final int MAX_ATTEMPT=10;
 private int remainingAttempt;
 private double score;
+HangmanDBService db;
+public Hangman(HangmanDBService db) {
+	// TODO Auto-generated constructor stub
+	this.db=db;
+}
+
+public Hangman()
+{
+	
+}
 public int getRemainingAttempt()
 {
 	return remainingAttempt;
@@ -102,5 +113,11 @@ public void setScore(double score) {
 public double getScore() {
 	// TODO Auto-generated method stub
 	return score;
+}
+
+public Boolean saveWord(String word, double score) {
+	// TODO Auto-generated method stub
+	return db.writeScore(word, score);
+	
 }
 }

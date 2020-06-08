@@ -3,6 +3,8 @@ package hangmantdd;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.HashSet;
 import java.util.Random;
@@ -120,5 +122,14 @@ void test_ScoreAfterCorrectGusess1()
 	hang.processGuess("lazza", "-----", 'z');
 	hang.processGuess("lazza", "---z-", 'z');
 	assertEquals(3.0, hang.getScore());
+}
+
+@Test
+void test_writetoDatabase()
+{
+	HangmanDBService db=mock(HangmanDBService.class);
+	Hangman han=new Hangman(db);
+	when(db.writeScore("lazza",10.0)).thenReturn(true);
+	assertTrue(han.saveWord("lazza",10.0));
 }
 }
